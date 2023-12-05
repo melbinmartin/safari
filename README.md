@@ -152,8 +152,14 @@ Password: Mnp44#blogs<br>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-##Screenshort
-
+## SCREENSHORT <br>
+<img src="SS_1.PNG" alt="Logo" width="300" height="250">
+<img src="SS_2.PNG" alt="Logo" width="300" height="250">
+<img src="SS_3.PNG" alt="Logo" width="300" height="250">
+<img src="SS_4.png" alt="Logo" width="300" height="250">
+<img src="SS_5.png" alt="Logo" width="300" height="250">
+<img src="SS_6.png" alt="Logo" width="300" height="250">
+<img src="SS_7.png" alt="Logo" width="300" height="250">
 
 
 
