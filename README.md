@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 
 Safari is a web-based blogging platform designed for seamless content creation, publication, and management. Users can register, log in, and craft engaging blog posts with ease. The platform offers intuitive features for viewing and editing posts, ensuring a dynamic user experience. With robust security measures in place, Safari presents a responsive interface that allows users to showcase their creativity while delivering captivating content to the public.
 
