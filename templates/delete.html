@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% static "images" as BaseUrl %}
+{% block css %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="{% static 'css\delete.css' %}" />
+
+{% endblock css %} {% block content %}
+
+
+<!-- loop start here ====================================================-->
+<form action="{% url 'delete_post' item.id  %}" method="POST" class="form">
+  {% csrf_token %}
+    <div class="card">
+     
+      <div class="card-image"
+      style="background: url('/media/{{item.image}}');"
+      ></div>
+      <div class="card-text">
+        
+        <h2>{{item.title}}</h2>
+        
+    
+      
+        <p>{{item.desc}}</p>
+        
+        
+        
+      </div>
+      <div class="created">
+        <span class="owner">
+          <b style="font-size:15px; " >
+            {{item.created_by.get_full_name}}
+                  <i class="uis uis-check-circle" style="color: #66299b"></i>
+
+          </b><br>
+          <span class="date" style="font-size:13px; color: red; ">{{item.updated_at|date:"M d, Y" }}</span>
+          </span>
+          
+          <div class="button">
+
+            <button class="usercontact" type="submit"> Delete</button>&nbsp;&nbsp;
+            &nbsp;&nbsp;          </form>
+              <button class="usercontact" type="reset" onclick ="location.href = '/';"> Cancel     
+              </button>
+            </div>
+          </div>
+      </div>
+
+      
+      
+
+
+
+  {% endblock %} 
+

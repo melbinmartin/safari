@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+<!--  -->
+{% block css %}
+
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css\index.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css\navbar.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link
+  rel="stylesheet"
+  href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+  crossorigin="anonymous"
+/>
+
+    {% endblock css %}
+    <!--  -->
+    {% block content %}
+    <a href="{% url 'addpost' %}" class="float">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player
+        src="{% static 'json/add-post.json' %}"
+        background="transparent"
+        speed="1"
+        style="width: 60px; height: 60px"
+        loop
+        autoplay
+      ></lottie-player>
+      </a>
+    <!--card1-->
+    <section class="navigation  sticky">
+      <div class="nav-container">
+        <div class="brand" style="color: #ff8928;font-weight: 800;"> 
+         SAFARI
+        </div>
+        <nav>
+          <div class="nav-mobile"><a id="nav-toggle" href="{% url 'index' %}"><span></span></a></div>
+          
+          <ul class="nav-list">
+            <li>
+              <div class="search-form">
+                  <form action="{% url 'search' %}" method="get">
+                      <input type="text" name="q" placeholder="Search posts...">
+                      <button type="submit">Search</button>
+                  </form>
+              </div>
+
+            </li>
+            <li>
+              <a href="{% url 'profile' %}">
+                <i class="uil uil-user-circle"></i>
+                &nbsp;&nbsp;{{user.get_full_name}}</a>
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <div class="card-container">
+
+
+    <!-- Add this form where you want the search bar to appear -->
+
+
+    {% for post in posts %}
+<!-- loop start here ====================================================-->
+    <div class="card">
+
+      <div class="card-image"
+      style="background: url('../media/{{post.image}}'); background-size: cover;
+      background-repeat: no-repeat;"
+      ></div>
+   <div class="content">
+    <div class="card-text">
+
+      <h4>{{post.title}}</h4>
+
+
+      <p>{{post.desc}}</p>
+
+
+
+    </div>
+    <div class="created">
+      <span class="owner">
+        <b style="font-size:15px; " >
+          {{post.created_by.get_full_name}}
+          {% if post.created_by.is_superuser %}
+                <i class="uis uis-check-circle" style="color: #00dd11"></i>
+                {% elif post.created_by.profile.verified %}
+                <i class="uis uis-check-circle" style="color: #66299b"></i>
+                {% else %} {% endif %}
+        </b><br>
+        <span class="date" style="font-size:13px; color: red; ">{{post.updated_at|date:"M d, Y" }}</span>
+        </span>
+
+        <div class="button">
+          {% if userId == post.created_by.id %}
+          <button class="usercontact"onclick ="location.href = 'post/update-post/{{post.id}}';"> EDIT
+
+         
+              {% endif %}
+
+            </button>
+          </div>
+        </div>
+   </div>
+      </div>
+
+
+
+      {% endfor %}
+    </div>
+
+
+      </div>
+   
+{% endblock content %}
+{% block script %}
+<!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+<script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+{% endblock script %}

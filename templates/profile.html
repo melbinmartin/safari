@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+<!--  -->
+{% load widget_tweaks %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% static "images" as BaseUrl %}
+<!--  -->
+{% block css %}
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+/>
+{% endblock css %}
+<!--  -->
+{% block content %}
+<section class="navigation sticky">
+  <div class="nav-container">
+    <div class="brand">
+      <a href="/">
+        <img src="{% static 'images\logo2.png' %}" style="display: block; margin-top: -90px; width: 50%;" />
+    </a>
+    
+    </div>
+    <nav>
+      <div class="nav-mobile">
+        <a id="nav-toggle" href="#!"><span></span></a>
+      </div>
+      <ul class="nav-list">
+  
+        <li>
+          <a href="{% url 'profile' %}">{{user.get_full_name}}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+<div class="container" id="container">
+  <div class="picture">
+    <div class="dp-img">
+      <img class="profile" src="{{ user.profile.image.url }}" />
+    </div>
+    <div class="ghost" style="color: aliceblue">{{ user.get_full_name }}</div>
+
+    <div>
+      {% for message in messages %}
+      <div class="ghost" style="color: aliceblue">{{message}}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="info">
+    <form
+      class="form2"
+      method="POST"
+      enctype="multipart/form-data"
+      id="profileForm"
+      
+    >
+      {% csrf_token %}
+      <!-- ============================= -->
+
+      <div>
+        <h2>USER NAME</h2>
+        <div class="Icon-inside">
+          <div>
+            <!--  -->
+            {% render_field u_form.username %}
+            <!--  -->
+            <i class="uil uil-pen"></i>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <!-- ============================= -->
+      <div>
+        <h2>E MAIL</h2>
+        <div class="Icon-inside">
+          <div>
+            {% render_field u_form.email type="email" %}
+
+            <i class="uil uil-pen"></i>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <!-- ============================= -->
+      <div>
+        <h2>FIRST NAME</h2>
+        <div class="Icon-inside">
+          <div>
+            {% if user.profile.verified %}
+            <!--  -->
+            {% render_field u_form.first_name|append_attr:"readonly:readonly" %}
+
+            <i class="uis uis-check-circle" style="color: #66299b"></i>
+            {% else %}
+            <!--  -->
+            {% render_field u_form.first_name %}
+            <!--  -->
+            <i class="uil uil-pen"></i>
+            {% endif %}
+          </div>
+          <hr />
+        </div>
+      </div>
+      <!-- ============================= -->
+      <div>
+        <h2>LAST NAME</h2>
+        <div class="Icon-inside">
+          <div>
+            <!--  -->
+            {% if user.profile.verified %}
+            <!--  -->
+            {% render_field u_form.last_name|append_attr:"readonly:readonly" %}
+
+            <i class="uis uis-check-circle" style="color: #66299b"></i>
+            {% else %}
+            <!--  -->
+            {% render_field u_form.last_name type="text" %}
+            <!--  -->
+            <i class="uil uil-pen"></i>
+            {% endif %}
+          </div>
+          <hr />
+        </div>
+      </div>
+      <div>
+        <h2>Image</h2>
+        <div class="Icon-inside">
+          <div class="upload">
+            {% render_field p_form.image type="file" class="upload"%}
+            <i class="uil uil-pen"></i>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <!-- ============================= -->
+      <div class="info-btns">
+        <a  href="/"><button class="info-btn" type="submit">save</button></a>
+        <a href="{% url 'logout' %}" class="info-a">Log out</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#id_state").change(function () {
+    const url = $("#profileForm").attr("data-states-url"); // get the url of the `load_cities` view
+    const stateId = $(this).val(); // get the selected state ID from the HTML input
+
+    $.ajax({
+      // initialize an AJAX request
+      url: url, // set the url of the request (= /persons/ajax/load-cities/ )
+      data: {
+        state_id: stateId, // add the state id to the GET parameters
+      },
+      success: function (data) {
+        // `data` is the return of the `load_cities` view function
+        //$("#id_city").html(data); // replace the contents of the city input with the data that came from the server
+
+        let html_data = '<option value="">---------</option>';
+        data.forEach(function (city) {
+          console.log(city);
+          html_data += `<option value="${city.id}">${city.name}</option>`;
+        });
+        $("#id_city").html(html_data);
+      },
+    });
+  });
+</script>
+{% endblock scripts %}
