@@ -37,7 +37,7 @@
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
+    <br />w
     <a href="https://melbinmartin.pythonanywhere.com/account/?next=/">View Demo</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
@@ -129,7 +129,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 
 <!-- USAGE EXAMPLES -->
-## Walk Through 
+## HOW TO RUN LOCALLY 
 - Sign Up If You are a new user
 - After Signup - Login
 - To check the Login
