@@ -35,7 +35,7 @@
   <p align="center">
     Welcome to the project !
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="SAFARI.docx"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://melbinmartin.pythonanywhere.com/account/?next=/">View Demo</a>
