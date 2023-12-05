@@ -112,9 +112,9 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+follow the steps for installing 
 
-1. Clone the repo
+1. Clone the repository 
    ```sh
    git clone https://github.com/melbinmartin/safari.git
    ```
